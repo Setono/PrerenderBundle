@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="Setono\PrerenderBundle\Prerenderer\PrerendererInterface" alias="setono_prerender.prerenderer"/>
+
+        <service id="setono_prerender.prerenderer" alias="setono_prerender.prerenderer.rendertron"/>
+
+        <service id="setono_prerender.prerenderer.rendertron"
+                 class="Setono\PrerenderBundle\Prerenderer\Adapter\Rendertron">
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="http_client"/>
+            <argument>%setono_prerender.prerenderer.rendertron.url%</argument>
+        </service>
+    </services>
+</container>

@@ -24,8 +24,6 @@ final class SetonoPrerenderExtensionTest extends AbstractExtensionTestCase
      */
     public function it_can_load(): void
     {
-        $this->setParameter('kernel.debug', true);
-
         $this->load();
 
         self::assertTrue(true);

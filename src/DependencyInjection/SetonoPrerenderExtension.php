@@ -15,8 +15,12 @@ final class SetonoPrerenderExtension extends Extension
     {
         /**
          * @psalm-suppress PossiblyNullArgument
+         *
+         * @var array{prerenderer: array{rendertron: array{url: string}}} $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
+
+        $container->setParameter('setono_prerender.prerenderer.rendertron.url', $config['prerenderer']['rendertron']['url']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
