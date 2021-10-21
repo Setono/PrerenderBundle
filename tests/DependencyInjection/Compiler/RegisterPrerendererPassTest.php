@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 /**
  * @covers \Setono\PrerenderBundle\DependencyInjection\Compiler\RegisterPrerendererPass
  */
-final class RegisterFiltersPassTest extends AbstractCompilerPassTestCase
+final class RegisterPrerendererPassTest extends AbstractCompilerPassTestCase
 {
     /**
      * @test
