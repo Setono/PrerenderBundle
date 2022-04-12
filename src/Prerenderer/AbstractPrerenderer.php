@@ -16,7 +16,17 @@ abstract class AbstractPrerenderer implements PrerendererInterface
         $this->requestStack = $requestStack;
     }
 
-    protected function getMainRequest(): Request
+    public function renderMainRequest(): string
+    {
+        return $this->renderRequest($this->getMainRequest());
+    }
+
+    public function renderRequest(Request $request): string
+    {
+        return $this->renderUrl($request->getUri());
+    }
+
+    private function getMainRequest(): Request
     {
         $request = $this->requestStack->getMasterRequest();
         if (null === $request) {
