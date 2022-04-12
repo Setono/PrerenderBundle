@@ -22,10 +22,10 @@ final class Rendertron extends AbstractPrerenderer
         $this->rendertronUrl = rtrim($rendertronUrl, '/');
     }
 
-    public function renderUrl(string $url): string
+    protected function _renderUrl($url): string
     {
         return $this->httpClient
-            ->request('GET', sprintf('%s/render/%s', $this->rendertronUrl, rawurlencode($url)))
+            ->request('GET', sprintf('%s/render/%s', $this->rendertronUrl, rawurlencode((string) $url)))
             ->getContent()
         ;
     }
