@@ -23,6 +23,8 @@ final class SetonoPrerenderExtension extends Extension
         $container->setParameter('setono_prerender.prerenderer.rendertron.url', $config['prerenderer']['rendertron']['url']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+
+        /** @psalm-suppress ReservedWord */
         $loader->load('services.xml');
     }
 }
