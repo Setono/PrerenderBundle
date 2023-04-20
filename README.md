@@ -1,7 +1,6 @@
 # Symfony Prerender Bundle
 
 [![Latest Version][ico-version]][link-packagist]
-[![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-github-actions]][link-github-actions]
 
@@ -69,7 +68,6 @@ final class ProductController
 ```
 
 [ico-version]: https://poser.pugx.org/setono/prerender-bundle/v/stable
-[ico-unstable-version]: https://poser.pugx.org/setono/prerender-bundle/v/unstable
 [ico-license]: https://poser.pugx.org/setono/prerender-bundle/license
 [ico-github-actions]: https://github.com/Setono/PrerenderBundle/workflows/build/badge.svg
 
