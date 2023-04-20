@@ -22,17 +22,28 @@ manually to `bundles.php` instead.
 
 ## Configuration
 
+The bundle is already preconfigured for you if you want to use the [open source version of prerender.io](https://github.com/prerender/prerender).
+Then you just need to run that service. However, you can configure it easily like so:
+
 ```yaml
 # config/packages/setono_prerender.yaml
 setono_prerender:
-    prerenderer:
-        rendertron:
-            url: <the url of your rendertron service> # default is http://localhost:3000
+    adapter:
+        prerender: 'http://your-prerender-url.com'
+```
+
+If you want to create your own prerenderer service, just implement the [`PrerendererInterface`](src/Prerenderer/PrerendererInterface.php)
+and tag your service with `setono_prerender.prerenderer`. Then in the configuration of the bundle do this:
+
+```yaml
+# config/packages/setono_prerender.yaml
+setono_prerender:
+    prerenderer: 'the-service-id-of-your-prerenderer-service'
 ```
 
 ## Usage
 
-Here is a very basic example of a product controller where we want to render the index (i.e. a product listing page).
+Here is a very basic example of a product controller where we want to render the index action:
 
 ```php
 <?php
