@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace Setono\PrerenderBundle\EventSubscriber;
 
-use Setono\PrerenderBundle\Request\MainRequestTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 final class RemovePrerenderAttributeSubscriber implements EventSubscriberInterface
 {
-    use MainRequestTrait;
-
     public static function getSubscribedEvents(): array
     {
         return [
@@ -22,7 +19,7 @@ final class RemovePrerenderAttributeSubscriber implements EventSubscriberInterfa
 
     public function onRequest(RequestEvent $event): void
     {
-        if (!$this->isMainRequest($event)) {
+        if (!$event->isMainRequest()) {
             return;
         }
 

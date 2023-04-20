@@ -8,14 +8,11 @@ use League\Uri\Contracts\UriInterface;
 use League\Uri\Uri;
 use League\Uri\UriModifier;
 use Psr\Http\Message\UriInterface as Psr7UriInterface;
-use Setono\PrerenderBundle\Request\MainRequestTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class AbstractPrerenderer implements PrerendererInterface
 {
-    use MainRequestTrait;
-
     protected RequestStack $requestStack;
 
     public function __construct(RequestStack $requestStack)
@@ -45,7 +42,7 @@ abstract class AbstractPrerenderer implements PrerendererInterface
 
     private function getMainRequest(): Request
     {
-        $request = $this->getMainRequestFromRequestStack($this->requestStack);
+        $request = $this->requestStack->getMainRequest();
         if (null === $request) {
             throw new \RuntimeException('You are not calling this method inside a request/response lifecycle');
         }

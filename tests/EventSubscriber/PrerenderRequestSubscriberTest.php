@@ -165,6 +165,8 @@ final class PrerenderRequestSubscriberTest extends TestCase
     public function it_has_correct_priorities(): void
     {
         // fetching and validating events for the event subscriber we are testing
+
+        /** @var array<string, array{0: string, 1: int}> $ownEvents */
         $ownEvents = PrerenderRequestSubscriber::getSubscribedEvents();
         self::assertCount(1, $ownEvents);
         self::assertArrayHasKey(KernelEvents::REQUEST, $ownEvents);
@@ -173,6 +175,7 @@ final class PrerenderRequestSubscriberTest extends TestCase
         self::assertIsInt($ownPriority);
 
         // fetching and validating events for the RemovePrerenderAttributeSubscriber
+        /** @var array<string, array{0: string, 1: int}> $removePrerenderAttributeSubscriberEvents */
         $removePrerenderAttributeSubscriberEvents = RemovePrerenderAttributeSubscriber::getSubscribedEvents();
         self::assertCount(1, $removePrerenderAttributeSubscriberEvents);
         self::assertArrayHasKey(KernelEvents::REQUEST, $removePrerenderAttributeSubscriberEvents);
@@ -182,7 +185,11 @@ final class PrerenderRequestSubscriberTest extends TestCase
         self::assertGreaterThan($ownPriority, $removePrerenderAttributeSubscriberPriority);
 
         // fetching and validating events for the DebugHandlersListener
-        /** @psalm-suppress InternalClass,InternalMethod */
+        /**
+         * @psalm-suppress InternalClass,InternalMethod
+         *
+         * @var array<string, array{0: string, 1: int}> $debugHandlersListenerEvents
+         */
         $debugHandlersListenerEvents = DebugHandlersListener::getSubscribedEvents();
         self::assertArrayHasKey(KernelEvents::REQUEST, $debugHandlersListenerEvents);
 

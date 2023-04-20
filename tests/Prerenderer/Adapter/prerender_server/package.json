@@ -1,0 +1,9 @@
+{
+  "name": "server",
+  "dependencies": {
+    "prerender": "^5.20.2"
+  },
+  "scripts": {
+    "server": "node server.js"
+  }
+}

@@ -3,15 +3,22 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="Setono\PrerenderBundle\Prerenderer\PrerendererInterface" alias="setono_prerender.prerenderer"/>
+        <service id="setono_prerender.prerenderer.prerender"
+                 class="Setono\PrerenderBundle\Prerenderer\Adapter\Prerender">
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="http_client"/>
+            <argument>%setono_prerender.adapter.prerender.url%</argument>
 
-        <service id="setono_prerender.prerenderer" alias="setono_prerender.prerenderer.rendertron"/>
+            <tag name="setono_prerender.prerenderer"/>
+        </service>
 
         <service id="setono_prerender.prerenderer.rendertron"
                  class="Setono\PrerenderBundle\Prerenderer\Adapter\Rendertron">
             <argument type="service" id="request_stack"/>
             <argument type="service" id="http_client"/>
-            <argument>%setono_prerender.prerenderer.rendertron.url%</argument>
+            <argument>%setono_prerender.adapter.rendertron.url%</argument>
+
+            <tag name="setono_prerender.prerenderer"/>
         </service>
     </services>
 </container>

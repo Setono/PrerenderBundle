@@ -6,7 +6,6 @@ namespace Setono\PrerenderBundle\EventSubscriber;
 
 use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\PrerenderBundle\Prerenderer\PrerendererInterface;
-use Setono\PrerenderBundle\Request\MainRequestTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -14,8 +13,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class PrerenderRequestSubscriber implements EventSubscriberInterface
 {
-    use MainRequestTrait;
-
     private PrerendererInterface $prerenderer;
 
     private BotDetectorInterface $botDetector;
@@ -35,7 +32,7 @@ final class PrerenderRequestSubscriber implements EventSubscriberInterface
 
     public function onRequest(RequestEvent $event): void
     {
-        if (!$this->isMainRequest($event)) {
+        if (!$event->isMainRequest()) {
             return;
         }
 

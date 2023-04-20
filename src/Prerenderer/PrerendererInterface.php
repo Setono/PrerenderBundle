@@ -21,7 +21,7 @@ interface PrerendererInterface
     public function renderUrl($url): string;
 
     /**
-     * Will render the URL of the current request and return the HTML
+     * Will render the URL of the main request and return the HTML
      */
     public function renderMainRequest(): string;
 
