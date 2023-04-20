@@ -26,6 +26,7 @@ final class SetonoPrerenderExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
+        /** @psalm-suppress ReservedWord */
         $loader->load('services.xml');
     }
 }
