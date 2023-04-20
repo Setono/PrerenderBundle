@@ -26,7 +26,7 @@ final class PrerenderRequestSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::REQUEST => ['onRequest', 1900],
+            KernelEvents::REQUEST => ['onRequest', 30],
         ];
     }
 
@@ -38,7 +38,7 @@ final class PrerenderRequestSubscriber implements EventSubscriberInterface
 
         $request = $event->getRequest();
 
-        $prerenderAttribute = $request->attributes->get('prerender');
+        $prerenderAttribute = $request->attributes->get('_prerender');
         if (null === $prerenderAttribute) {
             return;
         }

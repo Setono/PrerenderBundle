@@ -28,7 +28,7 @@ final class PrerenderRequestSubscriberTest extends TestCase
      */
     public function it_sets_response_if_prerender_is_set_to_true(): void
     {
-        $request = new Request([], [], ['prerender' => true]);
+        $request = new Request([], [], ['_prerender' => true]);
 
         $prerenderer = $this->prophesize(PrerendererInterface::class);
         $prerenderer->renderRequest($request)->willReturn('content');
@@ -54,7 +54,7 @@ final class PrerenderRequestSubscriberTest extends TestCase
      */
     public function it_sets_response_if_prerender_is_array_and_bot_is_true(): void
     {
-        $request = new Request([], [], ['prerender' => ['bot' => true]]);
+        $request = new Request([], [], ['_prerender' => ['bot' => true]]);
 
         $prerenderer = $this->prophesize(PrerendererInterface::class);
         $prerenderer->renderRequest($request)->willReturn('content');
@@ -101,7 +101,7 @@ final class PrerenderRequestSubscriberTest extends TestCase
      */
     public function it_does_not_do_anything_if_prerender_attribute_is_false(): void
     {
-        $request = new Request([], [], ['prerender' => false]);
+        $request = new Request([], [], ['_prerender' => false]);
 
         $event = new RequestEvent($this->prophesize(HttpKernelInterface::class)->reveal(), $request, 1);
 
@@ -121,7 +121,7 @@ final class PrerenderRequestSubscriberTest extends TestCase
      */
     public function it_does_not_do_anything_if_prerender_attribute_is_array_and_bot_is_false(): void
     {
-        $request = new Request([], [], ['prerender' => ['bot' => false]]);
+        $request = new Request([], [], ['_prerender' => ['bot' => false]]);
 
         $event = new RequestEvent($this->prophesize(HttpKernelInterface::class)->reveal(), $request, 1);
 
@@ -141,7 +141,7 @@ final class PrerenderRequestSubscriberTest extends TestCase
      */
     public function it_does_not_do_anything_if_request_is_not_a_bot(): void
     {
-        $request = new Request([], [], ['prerender' => ['bot' => true]]);
+        $request = new Request([], [], ['_prerender' => ['bot' => true]]);
 
         $event = new RequestEvent($this->prophesize(HttpKernelInterface::class)->reveal(), $request, 1);
 

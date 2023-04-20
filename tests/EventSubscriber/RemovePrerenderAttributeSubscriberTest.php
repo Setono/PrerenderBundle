@@ -23,13 +23,13 @@ final class RemovePrerenderAttributeSubscriberTest extends TestCase
      */
     public function it_removes_attribute(): void
     {
-        $request = new Request(['_is_prerender_request' => true], [], ['prerender' => true]);
+        $request = new Request(['_is_prerender_request' => true], [], ['_prerender' => true]);
 
         $event = new RequestEvent($this->prophesize(HttpKernelInterface::class)->reveal(), $request, 1);
 
         $subscriber = new RemovePrerenderAttributeSubscriber();
         $subscriber->onRequest($event);
 
-        self::assertFalse($request->attributes->has('prerender'));
+        self::assertFalse($request->attributes->has('_prerender'));
     }
 }

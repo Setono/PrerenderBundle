@@ -13,7 +13,7 @@ final class RemovePrerenderAttributeSubscriber implements EventSubscriberInterfa
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::REQUEST => ['onRequest', 2000],
+            KernelEvents::REQUEST => ['onRequest', 31],
         ];
     }
 
@@ -31,6 +31,6 @@ final class RemovePrerenderAttributeSubscriber implements EventSubscriberInterfa
         }
 
         $request->attributes->set('is_prerender_request', true);
-        $request->attributes->remove('prerender');
+        $request->attributes->remove('_prerender');
     }
 }
